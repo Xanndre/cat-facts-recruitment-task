@@ -11,6 +11,7 @@ namespace CatFacts.Web.Extensions
         public static void AddServices(this IServiceCollection services)
         {
             services.AddScoped<IFactService, FactService>();
+            services.AddScoped<IFileService, FileService>();
         }
 
         public static void ConfigureOptions(this IServiceCollection services, IConfiguration configuration)

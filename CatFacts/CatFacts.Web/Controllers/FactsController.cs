@@ -23,7 +23,8 @@ namespace CatFacts.Web.Controllers
         {
             try
             {
-                return Ok(await _factService.GetFact());
+                await _factService.SaveFact();
+                return Ok();
             }
             catch (Exception exception)
             {
