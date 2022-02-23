@@ -34,6 +34,7 @@ namespace CatFacts.Web
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "CatFacts.Web", Version = "v1" });
             });
             services.AddServices();
+            services.ConfigureOptions(Configuration);
             services.AddHttpClient();
         }
 
