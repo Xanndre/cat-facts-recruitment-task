@@ -1,15 +1,16 @@
 ﻿using CatFacts.Core.Interfaces;
 using System.IO;
+using System.Threading.Tasks;
 
 namespace CatFacts.Core.Services
 {
     public class FileService : IFileService
     {
-        public void SaveToFile(string outputFileName, string content)
+        public async Task SaveToFile(string outputFileName, string content)
         {
             using (var stream = File.AppendText(outputFileName))
             {
-                stream.WriteLine(content);
+                await stream.WriteLineAsync(content);
             }
         }
     }

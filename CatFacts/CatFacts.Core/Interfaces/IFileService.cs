@@ -1,7 +1,9 @@
-﻿namespace CatFacts.Core.Interfaces
+﻿using System.Threading.Tasks;
+
+namespace CatFacts.Core.Interfaces
 {
     public interface IFileService
     {
-        void SaveToFile(string outputFileName, string content);
+        Task SaveToFile(string outputFileName, string content);
     }
 }

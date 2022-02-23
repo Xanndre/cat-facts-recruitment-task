@@ -4,6 +4,5 @@
     {
         public string ApiUrl { get; set; }
         public string OutputFileName { get; set; }
-
     }
 }

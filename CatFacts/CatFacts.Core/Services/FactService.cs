@@ -3,7 +3,7 @@ using CatFacts.Core.Interfaces;
 using CatFacts.Core.Models;
 using Microsoft.Extensions.Options;
 using System.Net.Http;
-using System.Text.Json;
+using System.Net.Http.Json;
 using System.Threading.Tasks;
 
 namespace CatFacts.Core.Services
@@ -25,15 +25,8 @@ namespace CatFacts.Core.Services
         {
             var client = _httpClientFactory.CreateClient();
  
-            var response = await client.GetAsync(_factOptions.ApiUrl);
-            var content = await response.Content.ReadAsStringAsync();
-
-            var deserializedContent = JsonSerializer.Deserialize<CatFact>(content);
-
-            _fileService.SaveToFile(_factOptions.OutputFileName, deserializedContent.Fact);
-        
+            var response = await client.GetFromJsonAsync<CatFact>(_factOptions.ApiUrl);
+            await _fileService.SaveToFile(_factOptions.OutputFileName, response.Fact);
         }
-
-
     }
 }
