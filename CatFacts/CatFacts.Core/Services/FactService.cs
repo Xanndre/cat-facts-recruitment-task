@@ -28,12 +28,7 @@ namespace CatFacts.Core.Services
             var response = await client.GetAsync(_factOptions.ApiUrl);
             var content = await response.Content.ReadAsStringAsync();
 
-            var options = new JsonSerializerOptions
-            {
-                PropertyNameCaseInsensitive = true
-            };
-
-            var deserializedContent = JsonSerializer.Deserialize<CatFact>(content, options);
+            var deserializedContent = JsonSerializer.Deserialize<CatFact>(content);
 
             _fileService.SaveToFile(_factOptions.OutputFileName, deserializedContent.Fact);
         
